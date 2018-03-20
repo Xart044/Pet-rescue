@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const bluebird = require('bluebird')
 
-const config = require('./../../config');
+const config = require('../../config');
 
 const {
     database: {
