@@ -1,14 +1,13 @@
 const express = require('express');
-const database = require('./database');
-const config = require('./../config');
-const routes = require('./routes');
-/**
- * Middlewares
- */
+const passport = require('passport');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const logger = require('morgan');
+
+const database = require('./database');
+const routes = require('./routes');
+const {strategy} = require('../config/passport');
 
 const {
     api: {
@@ -16,18 +15,28 @@ const {
         domain: appDomain,
         port: appPort
     }
-} = config;
+} = require('../config');
 
 const app = express();
 database();
+
+/**
+ * Middlewares
+ */
 
 if (process.env.ENV === 'development') {
     app.use(logger('dev'))
 }
 app.use(cors());
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(helmet());
+app.use(passport.initialize());
+strategy(passport)
+
+/**
+ * Routes
+ */
 
 app.use('/api', routes);
 
