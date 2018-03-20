@@ -1,0 +1,14 @@
+{
+    "api": {
+        "protocol": "http",
+        "domain": "localhost",
+        "port": "3000"
+    },
+    "database": {
+        "domain": "localhost",
+        "port": "27017",
+        "name": "dumb",
+        "username": null,
+        "password": null
+    }
+}
