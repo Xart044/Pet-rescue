@@ -1,6 +1,6 @@
 const httpStatus = require('http-status');
-const APIError = require('./../helpers/APIError');
-const User = require('./../models/user');
+const APIError = require('../helpers/APIError');
+const User = require('../models/user');
 
 const create = async (req, res, next) => {
     try {
