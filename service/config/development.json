@@ -12,6 +12,12 @@
         "password": null
     },
     "auth": {
+        "tokenName": "JWT",
         "secret": "iwanttopeteverycatintheworld"
+    },
+    "nexmo":{
+        "api_key": "3e615fbe",
+        "api_secret": "EJthbT9bKrVYsHM9",
+        "from": "PetRescue"
     }
 }

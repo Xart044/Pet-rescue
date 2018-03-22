@@ -28,6 +28,19 @@ const strategy = (passport) => {
     }));
 };
 
+/**
+ * jwtSign function for creating jwt token based on specific user data.
+ * 
+ * @param {object} user
+ * 
+ * @returns {string} token
+ */
+const jwtSign = (user) => {
+    const token = jwt.encode(user._doc, config.auth.secret);
+    return `${config.auth.tokenName} ${token}`
+};
+
 module.exports = {
+    jwtSign,
     strategy
 };
