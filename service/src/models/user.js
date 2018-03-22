@@ -15,7 +15,6 @@ const UserSchema = new Schema({
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     password: { type: String, required: true },
-    bio: { type: String, default: '' },
     role: { type: String, default: roles.default },
     loginStatus: { type: Boolean, default: false },
     lastLogin: { type: Date, default: null },
