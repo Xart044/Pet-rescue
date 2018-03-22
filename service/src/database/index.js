@@ -11,6 +11,7 @@ const {
     }
 } = config;
 
+bluebird.promisifyAll(mongoose);
 mongoose.Promise = bluebird;
 
 const dbUri = `mongodb://${domain}:${port}/${name}`;

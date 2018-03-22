@@ -17,6 +17,7 @@
     "cors": "^2.8.4",
     "express": "^4.16.2",
     "helmet": "^3.9.0",
+    "http-status": "^1.0.1",
     "jwt-simple": "^0.5.1",
     "mongoose": "^4.13.9",
     "morgan": "^1.9.0",
