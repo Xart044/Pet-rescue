@@ -12,6 +12,7 @@
         "password": null
     },
     "auth": {
+        "tokenName": "JWT",
         "secret": "iwanttopeteverycatintheworld"
     },
     "nexmo":{
