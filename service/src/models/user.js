@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const roles = require('../constants/roles');
-const config = require('../../config');
 
 const { Schema } = mongoose;
 
@@ -37,7 +36,7 @@ UserSchema.pre('save', async function (next) {
             this.password = hash;
             next();
         } catch (err) {
-            next(err)
+            next(err);
         }     
     } else {
         return next();

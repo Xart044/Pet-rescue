@@ -2,7 +2,7 @@ const jwt = require('jwt-simple');
 const { Strategy: JWTstrategy } = require('passport-jwt');
 const { ExtractJwt } = require('passport-jwt');
 
-const UserModel = require('../src/models/user');
+const User = require('../src/models/user');
 const config = require('./index');
 
 /**
@@ -23,7 +23,7 @@ const strategy = (passport) => {
             }
             next(null, false);       
         } catch (err) {
-            next(err, false)
+            next(err, false);
         }
     }));
 };
@@ -37,7 +37,7 @@ const strategy = (passport) => {
  */
 const jwtSign = (user) => {
     const token = jwt.encode(user._doc, config.auth.secret);
-    return `${config.auth.tokenName} ${token}`
+    return `${config.auth.tokenName} ${token}`;
 };
 
 module.exports = {

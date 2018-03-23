@@ -14,7 +14,7 @@ const signin = async (req, res, next) => {
         } else {
             const isMatch = await user.comparePassword(password);
             if (!isMatch) {
-                const err = new APIError('Authorization failed. Password incorrect.', httpStatus["401"])
+                const err = new APIError('Authorization failed. Password incorrect.', httpStatus["401"]);
                 return next(err);
             } else {
                 const verification = await UserVerification.findByIdAsync(user._doc.verification);
@@ -29,7 +29,7 @@ const signin = async (req, res, next) => {
                     };
                     res.send(returnObj);
                 } else {
-                    const err = new APIError('Authorization failed. You should activate your account first.', httpStatus["401"])
+                    const err = new APIError('Authorization failed. You should activate your account first.', httpStatus["401"]);
                     return next(err);
                 }
             }
@@ -56,7 +56,7 @@ const activateAccount = async (req, res, next) => {
             });
         }
     } catch (e) {
-        const err = new APIError(`Error during activating user account: ${error}`, httpStatus["401"]);
+        const err = new APIError(`Error during activating user account: ${e}`, httpStatus["401"]);
         next(err);
     }
 };

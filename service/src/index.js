@@ -25,14 +25,14 @@ database();
  */
 
 if (process.env.ENV === 'development') {
-    app.use(logger('dev'))
+    app.use(logger('dev'));
 }
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(helmet());
 app.use(passport.initialize());
-strategy(passport)
+strategy(passport);
 
 /**
  * Routes

@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-const bluebird = require('bluebird')
+const mongoose = require('mongoose');
+const bluebird = require('bluebird');
 
 const config = require('../../config');
 

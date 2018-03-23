@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 /**
- * VerificationSchema
+ * UserVerificationSchema
  */
 const UserVerificationSchema = new Schema({
     userId: { type: Schema.Types.ObjectId, ref: 'User' },
@@ -13,7 +13,7 @@ const UserVerificationSchema = new Schema({
 });
 
 /**
- * VerificationModel
+ * UserVerificationModel
  */
 const UserVerificationModel = mongoose.model('UserVerification', UserVerificationSchema);
 
