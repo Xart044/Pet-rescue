@@ -2,8 +2,8 @@ const Nexmo = require('nexmo');
 const config = require('../../config');
 
 const nexmo = new Nexmo({
-  apiKey: config.nexmo.api_key,
-  apiSecret: config.nexmo.api_secret
+    apiKey: config.nexmo.api_key,
+    apiSecret: config.nexmo.api_secret
 });
 
 const sendSMS = (receiverNumber, message) => {
