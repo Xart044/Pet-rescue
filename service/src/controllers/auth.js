@@ -1,6 +1,7 @@
 const httpStatus = require('http-status');
 const APIError = require('../helpers/APIError');
 const User = require('../models/user');
+const UserVerification = require('../models/userVerification');
 const { jwtSign } = require('./../../config/passport');
 
 const signin = async (req, res, next) => {
@@ -16,15 +17,21 @@ const signin = async (req, res, next) => {
                 const err = new APIError('Authorization failed. Password incorrect.', httpStatus["401"])
                 return next(err);
             } else {
-                const token = jwtSign(user);
-                const returnObj = {
-                    success: true,
-                    data: {
-                        ...user._doc,
-                        token
-                    }
-                };
-                res.send(returnObj);
+                const verification = await UserVerification.findByIdAsync(user._doc.verification);
+                if (verification.verified && !verification.verificationNumber) {
+                    const token = jwtSign(user);
+                    const returnObj = {
+                        success: true,
+                        data: {
+                            ...user._doc,
+                            token
+                        }
+                    };
+                    res.send(returnObj);
+                } else {
+                    const err = new APIError('Authorization failed. You should activate your account first.', httpStatus["401"])
+                    return next(err);
+                }
             }
         }
     } catch (error) {
