@@ -1,5 +1,5 @@
 const Nexmo = require('nexmo');
-const config = require('./index');
+const config = require('../../config');
 
 const nexmo = new Nexmo({
   apiKey: config.nexmo.api_key,
