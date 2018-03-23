@@ -14,4 +14,8 @@ router.route('/signin')
 router.route('/register')
     .post(validation(paramsValidation.createUser), userController.create);
 
+// POST /api/auth/activate
+router.route('/activate')
+    .post(validation(paramsValidation.accountActivate), authController.activateAccount);
+
 module.exports = router;

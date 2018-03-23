@@ -40,4 +40,25 @@ const signin = async (req, res, next) => {
     }
 };
 
-module.exports = { signin };
+const activateAccount = async (req, res, next) => {
+    const { verificationNumber, email } = req.body;
+
+    try {
+        const user = await User.findOneAsync({ email });
+        if (!user) {
+            const err = new APIError(`There is no user with this email: ${email}`);
+            next(err);
+        } else {
+            await UserVerification.findOneAndUpdateAsync({ userId: user._id, verificationNumber }, { verified: true, verificationNumber: null, updated: new Date() });
+            res.send({
+                status: true,
+                message: 'Account activated.'
+            });
+        }
+    } catch (e) {
+        const err = new APIError(`Error during activating user account: ${error}`, httpStatus["401"]);
+        next(err);
+    }
+};
+
+module.exports = { signin, activateAccount };

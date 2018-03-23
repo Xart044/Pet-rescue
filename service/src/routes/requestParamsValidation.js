@@ -11,6 +11,13 @@ module.exports = {
       lastName: Joi.string().required(),
     }
   },
+  // POST /api/auth/activate
+  accountActivate: {
+    body: {
+      email: Joi.string().email().required(),
+      verificationNumber: [Joi.string(), Joi.number()]
+    }
+  },
   // POST /api/auth/signin
   signin: {
     body: {
