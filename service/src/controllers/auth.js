@@ -18,20 +18,17 @@ const signin = async (req, res, next) => {
                 return next(err);
             } else {
                 const verification = await UserVerification.findByIdAsync(user._doc.verification);
-                if (verification.verified && !verification.verificationNumber) {
-                    const token = jwtSign(user);
-                    const returnObj = {
-                        success: true,
-                        data: {
-                            ...user._doc,
-                            token
-                        }
-                    };
-                    res.send(returnObj);
-                } else {
-                    const err = new APIError('Authorization failed. You should activate your account first.', httpStatus["401"]);
-                    return next(err);
-                }
+                const verified = verification.verified && !verification.verificationNumber;
+                const token = jwtSign(user);
+                const returnObj = {
+                    success: true,
+                    data: {
+                        ...user._doc,
+                        verified,
+                        token
+                    }
+                };
+                res.send(returnObj);
             }
         }
     } catch (error) {
