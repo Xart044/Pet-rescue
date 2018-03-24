@@ -2,9 +2,7 @@ const httpStatus = require('http-status');
 const APIError = require('../helpers/APIError');
 const User = require('../models/user');
 const UserVerification = require('../models/userVerification');
-const { sendSMS } = require('../services/smsService');
-
-const generateVerificationNumber = () => Math.floor(Math.random() * 8999) + 1000;
+const { generateVerificationNumber, sendVerificationSMS } = require('../helpers/verification');
 
 const create = async (req, res, next) => {
     try {
@@ -18,7 +16,7 @@ const create = async (req, res, next) => {
             const verificationNumber = generateVerificationNumber();
             const verification = await new UserVerification({ userId: newUser._id, verificationNumber }).saveAsync();
             await newUser.updateAsync({verification: verification._id});
-            sendSMS(phoneNo, `Your activation number is: ${verificationNumber}`);
+            sendVerificationSMS(phoneNo, verificationNumber);
             const returnObj = {
                 success: true,
                 message: 'User was successfully created. Now activate your account.'

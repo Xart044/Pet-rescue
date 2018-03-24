@@ -18,6 +18,12 @@ module.exports = {
             verificationNumber: [Joi.string(), Joi.number()]
         }
     },
+    // POST /api/auth/send-verification
+    sendVerification: {
+        body: {
+            email: Joi.string().email().required()
+        }
+    },
     // POST /api/auth/signin
     signin: {
         body: {
