@@ -9,6 +9,7 @@ module.exports = {
             phoneNo: Joi.string().required(),
             firstName: Joi.string().required(),
             lastName: Joi.string().required(),
+            role: Joi.string().required()
         }
     },
     // POST /api/auth/activate

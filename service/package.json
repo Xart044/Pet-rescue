@@ -6,7 +6,7 @@
   "scripts": {
     "start": "ENV=development nodemon src/index.js",
     "prod": "ENV=production eslint node src/index.js",
-    "test": "ENV=test ./node_modules/.bin/mocha --reporter spec"
+    "test": "ENV=test mocha"
   },
   "author": "",
   "license": "ISC",

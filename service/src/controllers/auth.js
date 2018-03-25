@@ -18,6 +18,7 @@ const signin = async (req, res, next) => {
                 const err = new APIError('Authorization failed. Password incorrect.', httpStatus["401"]);
                 return next(err);
             } else {
+                await user.updateAsync({ loginStatus: true, lastLogin: new Date(), updated: new Date() });
                 const verification = await UserVerification.findByIdAsync(user._doc.verification);
                 const verified = verification.verified && !verification.verificationNumber;
                 const token = jwtSign(user);
@@ -58,7 +59,7 @@ const activateAccount = async (req, res, next) => {
                 } else {
                     await verification.updateAsync({ verified: true, verificationNumber: null, updated: new Date() });
                     res.send({
-                        status: true,
+                        success: true,
                         message: 'Account activated.'
                     });
                 }
@@ -88,7 +89,7 @@ const sendVerification = async (req, res, next) => {
                 await verification.updateAsync({ verificationNumber });
                 sendVerificationSMS(user.phoneNo, verificationNumber);
                 res.send({
-                    status: true,
+                    success: true,
                     message: `Verification number sent to ${user.phoneNo}.`
                 });
             }
