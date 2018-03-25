@@ -7,7 +7,7 @@
     "database": {
         "domain": "localhost",
         "port": "27017",
-        "name": "petrescue",
+        "name": "petrescue_test",
         "username": null,
         "password": null
     },
