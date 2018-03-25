@@ -9,6 +9,7 @@ module.exports = {
             phoneNo: Joi.string().required(),
             firstName: Joi.string().required(),
             lastName: Joi.string().required(),
+            role: Joi.string().required()
         }
     },
     // POST /api/auth/activate
@@ -16,6 +17,12 @@ module.exports = {
         body: {
             email: Joi.string().email().required(),
             verificationNumber: [Joi.string(), Joi.number()]
+        }
+    },
+    // POST /api/auth/send-verification
+    sendVerification: {
+        body: {
+            email: Joi.string().email().required()
         }
     },
     // POST /api/auth/signin

@@ -18,4 +18,8 @@ router.route('/register')
 router.route('/activate')
     .post(validation(paramsValidation.accountActivate), authController.activateAccount);
 
+// POST /api/auth/send-verification
+router.route('/send-verification')
+    .post(validation(paramsValidation.sendVerification), authController.sendVerification);
+
 module.exports = router;

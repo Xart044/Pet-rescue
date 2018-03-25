@@ -1,12 +1,12 @@
 {
-  "name": "express-boilerplate",
+  "name": "Pet-rescue-service",
   "version": "1.0.0",
-  "description": "",
+  "description": "Server for pet rescue application.",
   "main": "index.js",
   "scripts": {
     "start": "ENV=development nodemon src/index.js",
     "prod": "ENV=production eslint node src/index.js",
-    "test": "ENV=test jest"
+    "test": "ENV=test mocha"
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +14,7 @@
     "bcrypt": "^1.0.3",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
+    "chai": "^4.1.2",
     "cors": "^2.8.4",
     "eslint": "^4.19.1",
     "express": "^4.16.2",
@@ -22,12 +23,14 @@
     "http-status": "^1.0.1",
     "joi": "^13.1.2",
     "jwt-simple": "^0.5.1",
+    "mocha": "^5.0.5",
     "mongoose": "^4.13.9",
     "morgan": "^1.9.0",
     "nexmo": "^2.2.0",
     "nodemon": "^1.14.11",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
+    "request": "^2.85.0",
     "uuid": "^3.2.1"
   }
 }
