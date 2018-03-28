@@ -14,7 +14,7 @@ const create = async (req, res, next) => {
         } else {
             let verification;
             const newUser = await new User({ email, phoneNo, firstName, lastName, password, role }).saveAsync();
-            if (process.env.ENV !== 'development') {
+            if (process.env.ENV === 'production') {
                 const verificationNumber = generateVerificationNumber();
                 verification = await new UserVerification({ userId: newUser._id, verificationNumber }).saveAsync();
                 sendVerificationSMS(phoneNo, verificationNumber);
