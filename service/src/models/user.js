@@ -34,12 +34,16 @@ UserSchema.pre('save', async function (next) {
             const salt = await bcrypt.genSalt(10);
             const hash = await bcrypt.hash(this.password, salt);
             this.password = hash;
+            if (!this.isNew) {
+                this.updated = new Date();
+            }
             next();
         } catch (err) {
             next(err);
         }     
     } else {
-        return next();
+        this.updated = new Date();
+        next();
     }
 });
 

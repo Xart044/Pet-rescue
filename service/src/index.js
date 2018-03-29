@@ -41,3 +41,5 @@ strategy(passport);
 app.use('/api', routes);
 
 app.listen(appPort, () => console.log(`Server starting on port: ${appProtol}://${appDomain}:${appPort}`));
+
+module.exports = app;

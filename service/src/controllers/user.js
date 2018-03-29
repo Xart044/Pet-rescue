@@ -4,7 +4,7 @@ const User = require('../models/user');
 const UserVerification = require('../models/userVerification');
 const { generateVerificationNumber, sendVerificationSMS } = require('../helpers/verification');
 
-const create = async (req, res, next) => {
+const register = async (req, res, next) => {
     try {
         const { email, phoneNo, firstName, lastName, password, role } = req.body;
         const foundUser = await User.findOneAsync({ email: req.body.email });
@@ -14,7 +14,7 @@ const create = async (req, res, next) => {
         } else {
             let verification;
             const newUser = await new User({ email, phoneNo, firstName, lastName, password, role }).saveAsync();
-            if (process.env.ENV !== 'development') {
+            if (process.env.ENV === 'production') {
                 const verificationNumber = generateVerificationNumber();
                 verification = await new UserVerification({ userId: newUser._id, verificationNumber }).saveAsync();
                 sendVerificationSMS(phoneNo, verificationNumber);
@@ -34,4 +34,4 @@ const create = async (req, res, next) => {
     }
 };
 
-module.exports = { create };
+module.exports = { register };

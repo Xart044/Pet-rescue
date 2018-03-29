@@ -12,7 +12,7 @@ router.route('/signin')
 
 // POST /api/auth/register
 router.route('/register')
-    .post(validation(paramsValidation.createUser), userController.create);
+    .post(validation(paramsValidation.createUser), userController.register);
 
 // POST /api/auth/activate
 router.route('/activate')

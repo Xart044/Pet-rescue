@@ -13,6 +13,18 @@ const UserVerificationSchema = new Schema({
 });
 
 /**
+ * UserVerificationScheme hook
+ * 
+ * Each time verification updated, it sets new updated value
+ */
+UserVerificationSchema.pre('save', function (next) {
+    if (!this.isNew) {
+        this.updated = new Date(); 
+    }
+    next();
+});
+
+/**
  * UserVerificationModel
  */
 const UserVerificationModel = mongoose.model('UserVerification', UserVerificationSchema);
