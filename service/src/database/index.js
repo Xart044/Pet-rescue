@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
 const bluebird = require('bluebird');
-const devUsers = require('../constants/devUsers');
-const { create } = require('../controllers/user');
 
 const config = require('../../config');
+const { fillDatabaseWithData } = require('../helpers/database');
 
 const { database: { port, domain, name } } = config;
 
@@ -12,16 +11,11 @@ mongoose.Promise = bluebird;
 
 const dbUri = `mongodb://${domain}:${port}/${name}`;
 
-const noop = () => {};
-
 const database = async () => {
     try {
         await mongoose.connect(dbUri, { useMongoClient: true });
         if (process.env.ENV === 'development') {
-            devUsers.forEach(user => {
-                console.log(`Creating user ${user.email} of role ${user.role} with password ${user.password}`);
-                create({ body: { ...user } }, { send: noop }, noop);
-            });
+            await fillDatabaseWithData();
         }
         console.log(`Database is connected: ${dbUri}`);
     } catch (error) {

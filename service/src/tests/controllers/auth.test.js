@@ -12,11 +12,11 @@ afterAll(async () => {
     await afterAllTests();
 });
 
-describe('User controller test', () => {
-    it('#Test register method; POST /api/auth/register; ', async () => {
-        const userData = {...devUsers[0], email: 'xhc044x@gmail.com'};
+describe('Auth controller test', () => {
+    it('#Test signin method; POST /api/auth/signin; ', async () => {
+        const userData = { email: devUsers[0].email, password: devUsers[0].password };
         const response = await request(app)
-            .post('/api/auth/register')
+            .post('/api/auth/signin')
             .send(userData);
 
         expect(response.body.success).toBe(true);
