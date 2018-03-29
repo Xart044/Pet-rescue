@@ -4,6 +4,14 @@ const User = require('../models/user');
 const UserVerification = require('../models/userVerification');
 const { generateVerificationNumber, sendVerificationSMS } = require('../helpers/verification');
 
+/**
+ * Controller for user register.
+ * Creates user and sends verificationNumber on users phone.
+ * 
+ * @param {*} req  in request body email and password is required;
+ * @param {*} res  sends request status and message
+ * @param {*} next function moves to next middleware
+ */
 const register = async (req, res, next) => {
     try {
         const { email, phoneNo, firstName, lastName, password, role } = req.body;

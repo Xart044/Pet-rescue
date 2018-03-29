@@ -6,6 +6,12 @@ const nexmo = new Nexmo({
     apiSecret: config.nexmo.api_secret
 });
 
+/**
+ * Function wrapper for sending sms
+ * 
+ * @param {*} receiverNumber receiver phone number
+ * @param {*} message        Sms message
+ */
 const sendSMS = (receiverNumber, message) => {
     return new Promise((resolve, reject) => {
         nexmo.message.sendSms(config.nexmo.from, receiverNumber, message, (error, response) => {
