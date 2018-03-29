@@ -5,6 +5,13 @@ const UserVerification = require('../models/userVerification');
 const { jwtSign } = require('./../../config/passport');
 const { generateVerificationNumber, sendVerificationSMS } = require('../helpers/verification');
 
+/**
+ * Controller for user signin.
+ * 
+ * @param {*} req  in request body email and password is required;
+ * @param {*} res  sends request status and user data
+ * @param {*} next function moves to next middleware
+ */
 const signin = async (req, res, next) => {
     try {
         const { email,  password } = req.body;
@@ -39,6 +46,13 @@ const signin = async (req, res, next) => {
     }
 };
 
+/**
+ * Controller for activating user account.
+ * 
+ * @param {*} req  in request body email and verificationNumber is required;
+ * @param {*} res  sends request status and message
+ * @param {*} next function moves to next middleware
+ */
 const activateAccount = async (req, res, next) => {
     const { verificationNumber, email } = req.body;
 
@@ -71,6 +85,13 @@ const activateAccount = async (req, res, next) => {
     }
 };
 
+/**
+ * Controller for sending verification number on user phoneNumber.
+ * 
+ * @param {*} req  in request body email is required;
+ * @param {*} res  sends request status and message
+ * @param {*} next function moves to next middleware
+ */
 const sendVerification = async (req, res, next) => {
     const { email } = req.body;
     const verificationNumber = generateVerificationNumber();

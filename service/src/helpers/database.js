@@ -13,6 +13,9 @@ const dbUri = `mongodb://${dbDomain}:${dbPort}/${name}`;
 
 const noop = () => {};
 
+/**
+ * Function for filling database with standart data
+ */
 const fillDatabaseWithData = async () => {
     await Promise.all(devUsers.map(async (user) => {
         console.log(`Creating user ${user.email} of role ${user.role} with password ${user.password}`);
