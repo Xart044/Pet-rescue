@@ -15,7 +15,7 @@ const create = async (req, res, next) => {
         const type = await new PetType({ name }).saveAsync();
         const returnObj = {
             success: true,
-            message: 'Type was succesfully created.',
+            message: 'Pet type was succesfully created.',
             type
         };
         res.send(returnObj);

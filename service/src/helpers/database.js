@@ -3,7 +3,9 @@ const mongoose = require('mongoose');
 
 const config = require('../../config/index');
 const devUsers = require('../constants/devUsers');
-const { register } = require('../controllers/user');
+const devPetTypes = require('../constants/devPetTypes');
+const { register: createUser } = require('../controllers/user');
+const { create: createPetType } = require('../controllers/admin-petTypes');
 
 const { 
     database: { port: dbPort, domain: dbDomain, name }
@@ -19,7 +21,11 @@ const noop = () => {};
 const fillDatabaseWithData = async () => {
     await Promise.all(devUsers.map(async (user) => {
         console.log(`Creating user ${user.email} of role ${user.role} with password ${user.password}`);
-        await register({ body: { ...user } }, { send: noop }, noop);
+        await createUser({ body: { ...user } }, { send: noop }, noop);
+    }));
+    await Promise.all(devPetTypes.map(async (type) => {
+        console.log(`Add pet type ${type.name}`);
+        await createPetType({ body: { ...type } }, { send: noop }, noop);
     }));
 };
 
