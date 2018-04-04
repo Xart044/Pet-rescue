@@ -9,4 +9,8 @@ const router = express.Router();
 router.route('/')
     .post(validation(paramsValidation.petStatusCreate), petStatusesController.create);
 
+// PUT /api/pet/status
+router.route('/')
+    .put(validation(paramsValidation.petStatusUpdate), petStatusesController.update);
+
 module.exports = router;

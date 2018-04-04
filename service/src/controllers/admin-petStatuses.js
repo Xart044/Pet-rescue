@@ -35,7 +35,7 @@ const create = async (req, res, next) => {
 const update = async (req, res, next) => {
     const { id, name } = req.body;
     try {
-        const status = await PetStatus.findByIdAndUpdateAsync(id, { $set: { name } });
+        const status = await PetStatus.findByIdAndUpdateAsync(id, { $set: { name } }, { new: true });
         const returnObj = {
             success: true,
             message: 'Pet status was succesfully updated.',

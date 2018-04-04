@@ -50,5 +50,12 @@ module.exports = {
         body: {
             name: Joi.string().required()
         }
+    },
+    // POST /api/pet/status
+    petStatusUpdate: {
+        body: {
+            id: Joi.string().required(),
+            name: Joi.string().required()
+        }
     }
 };
