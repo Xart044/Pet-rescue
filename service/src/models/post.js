@@ -7,6 +7,7 @@ const { Schema } = mongoose;
 const PostSchema = new Schema({
     prevPostId: { type: Schema.Types.ObjectId, ref: 'Post', default: null },
     senderId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+    animals: { type: [{ type: Schema.Types.ObjectId, ref: 'Pet', required: true }], required: true },
     description: { type: String, required: true },
     location: { type: [Number], index: '2d', required: true },
     created: { type: Date, default: Date.now },
