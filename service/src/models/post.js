@@ -18,7 +18,7 @@ const PostSchema = new Schema({
  * 
  * Each time verification updated, it sets new updated value
  */
-PostModel.pre('save', function (next) {
+PostSchema.pre('save', function (next) {
     if (!this.isNew) {
         this.updated = new Date(); 
     }
@@ -26,7 +26,7 @@ PostModel.pre('save', function (next) {
 });
 
 /**
- * UserVerificationModel
+ * PostModel
  */
 const PostModel = mongoose.model('Post', PostSchema);
 
