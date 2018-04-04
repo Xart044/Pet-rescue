@@ -4,8 +4,10 @@ const mongoose = require('mongoose');
 const config = require('../../config/index');
 const devUsers = require('../constants/devUsers');
 const devPetTypes = require('../constants/devPetTypes');
+const devPetStatuses = require('../constants/devPetStatuses');
 const { register: createUser } = require('../controllers/user');
 const { create: createPetType } = require('../controllers/admin-petTypes');
+const { create: createPetStatus } = require('../controllers/admin-petStatuses');
 
 const { 
     database: { port: dbPort, domain: dbDomain, name }
@@ -24,9 +26,13 @@ const fillDatabaseWithData = async () => {
         await createUser({ body: { ...user } }, { send: noop }, noop);
     }));
     await Promise.all(devPetTypes.map(async (type) => {
-        console.log(`Add pet type ${type.name}`);
         await createPetType({ body: { ...type } }, { send: noop }, noop);
     }));
+    console.log(`Add pet types: ${JSON.stringify(devPetTypes.map(el => el.name))}`);
+    await Promise.all(devPetStatuses.map(async (status) => {
+        await createPetStatus({ body: { ...status } }, { send: noop }, noop);
+    }));
+    console.log(`Add pet statuses: ${JSON.stringify(devPetStatuses.map(el => el.name))}`);
 };
 
 const beforeAllTests = async () => {
