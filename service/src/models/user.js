@@ -16,7 +16,7 @@ const UserSchema = new Schema({
     bio: { type: String, default: '' },
     password: { type: String, required: true },
     verification: { type: Schema.Types.ObjectId, ref: 'UserVerification' },
-    role: { type: String, default: roles.default },
+    role: { type: String, default: roles.volunteer },
     loginStatus: { type: Boolean, default: false },
     lastLogin: { type: Date, default: null },
     created: { type: Date, default: Date.now },
@@ -28,6 +28,7 @@ const UserSchema = new Schema({
  * 
  * Each time after saving or updating user model, checks for need to hash password.
  * Password hashes, if password changes or user is new.
+ * Each time model updated, it sets new updated value
  */
 UserSchema.pre('save', async function (next) {
     if (this.isModified('password') || this.isNew) {

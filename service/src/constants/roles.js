@@ -1,5 +1,5 @@
 module.exports = {
     admin: 'admin',
-    default: 'default',
+    volunteer: 'volunteer',
     shelter: 'shelter'
 };

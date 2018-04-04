@@ -17,7 +17,7 @@ const PostSchema = new Schema({
 /**
  * PostSchema hook
  * 
- * Each time verification updated, it sets new updated value
+ * Each time model updated, it sets new updated value
  */
 PostSchema.pre('save', function (next) {
     if (!this.isNew) {

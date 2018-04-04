@@ -5,7 +5,7 @@ const { Schema } = mongoose;
  * PetStatusSchema
  */
 const PetStatusSchema = new Schema({
-    name: { type: String, required: true },
+    name: { type: String, required: true, unique: true },
     created: { type: Date, default: Date.now },
     updated: { type: Date, default: null },
 });
@@ -13,7 +13,7 @@ const PetStatusSchema = new Schema({
 /**
  * PetStatusSchema hook
  * 
- * Each time verification updated, it sets new updated value
+ * Each time model updated, it sets new updated value
  */
 PetStatusSchema.pre('save', function (next) {
     if (!this.isNew) {

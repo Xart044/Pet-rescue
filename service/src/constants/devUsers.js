@@ -15,7 +15,7 @@ module.exports = [
         firstName: 'test',
         lastName: 'user 1',
         password: 'xhc044x123',
-        role: roles.default
+        role: roles.volunteer
     },
     {
         email: 'abc@xyz2.com',
@@ -23,6 +23,6 @@ module.exports = [
         firstName: 'test',
         lastName: 'user 2',
         password: 'xhc044x123',
-        role: roles.default
+        role: roles.volunteer
     }
 ];

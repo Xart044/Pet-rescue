@@ -11,6 +11,9 @@
         "username": null,
         "password": null
     },
+    "passportOptions": {
+        "session": false
+    },
     "auth": {
         "tokenName": "JWT",
         "secret": "iwanttopeteverycatintheworld"

@@ -17,20 +17,22 @@ const dbUri = `mongodb://${dbDomain}:${dbPort}/${name}`;
 
 const noop = () => {};
 
+const controllerAction = func => param => func({ body: { ...param } }, { send: noop }, noop);
+
 /**
  * Function for filling database with standart data
  */
 const fillDatabaseWithData = async () => {
     await Promise.all(devUsers.map(async (user) => {
         console.log(`Creating user ${user.email} of role ${user.role} with password ${user.password}`);
-        await createUser({ body: { ...user } }, { send: noop }, noop);
+        await controllerAction(createUser)(user);
     }));
     await Promise.all(devPetTypes.map(async (type) => {
-        await createPetType({ body: { ...type } }, { send: noop }, noop);
+        await controllerAction(createPetType)(type);
     }));
     console.log(`Add pet types: ${JSON.stringify(devPetTypes.map(el => el.name))}`);
     await Promise.all(devPetStatuses.map(async (status) => {
-        await createPetStatus({ body: { ...status } }, { send: noop }, noop);
+        await controllerAction(createPetStatus)(status);
     }));
     console.log(`Add pet statuses: ${JSON.stringify(devPetStatuses.map(el => el.name))}`);
 };
