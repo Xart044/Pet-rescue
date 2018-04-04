@@ -13,6 +13,7 @@ const UserSchema = new Schema({
     phoneNo: { type: String, required: true },
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
+    bio: { type: String, default: '' },
     password: { type: String, required: true },
     verification: { type: Schema.Types.ObjectId, ref: 'UserVerification' },
     role: { type: String, default: roles.default },

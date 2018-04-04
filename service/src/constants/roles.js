@@ -1,4 +1,5 @@
 module.exports = {
     admin: 'admin',
-    default: 'default'
+    default: 'default',
+    shelter: 'shelter'
 };
