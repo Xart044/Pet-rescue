@@ -48,4 +48,27 @@ const update = async (req, res, next) => {
     }
 };
 
-module.exports = { create, update };
+/**
+ * Controller for pet status deleting.
+ * 
+ * @param {*} req  in request body id is required;
+ * @param {*} res  sends request status, deleted status id and message
+ * @param {*} next function moves to next middleware
+ */
+const deletePetStatus = async (req, res, next) => {
+    const { id } = req.body;
+    try {
+        await PetStatus.findByIdAndRemoveAsync(id);
+        const returnObj = {
+            success: true,
+            message: 'Pet status was succesfully deleted.',
+            data: { id }
+        };
+        res.send(returnObj);
+    } catch (error) {
+        const err = new APIError(`Error during deleting pet status[${id}] : ${error}`, httpStatus.INTERNAL_SERVER_ERROR);
+        next(err);
+    }
+};
+
+module.exports = { create, update, delete: deletePetStatus };

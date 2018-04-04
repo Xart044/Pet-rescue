@@ -13,4 +13,8 @@ router.route('/')
 router.route('/')
     .put(validation(paramsValidation.petStatusUpdate), petStatusesController.update);
 
+// DELETE /api/pet/status
+router.route('/')
+    .delete(validation(paramsValidation.petStatusDelete), petStatusesController.delete);
+    
 module.exports = router;
