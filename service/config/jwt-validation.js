@@ -29,6 +29,6 @@ const createJwtValidation = (roles) => {
 
 export default {
     validateAdmin: createJwtValidation([defaultRoles.admin]),
-    validateUser: createJwtValidation([defaultRoles.admin, defaultRoles.volunteer, defaultRoles.shelter]),
+    validateVolunteer: createJwtValidation([defaultRoles.admin, defaultRoles.volunteer, defaultRoles.shelter]),
     validateShelter: createJwtValidation([defaultRoles.admin, defaultRoles.shelter])
 };
