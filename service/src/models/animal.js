@@ -5,6 +5,8 @@ const { Schema } = mongoose;
  * PetSchema
  */
 const PetSchema = new Schema({
+    typeId: { type: Schema.Types.ObjectId, ref: 'PetType', required: true },
+    statusId: { type: Schema.Types.ObjectId, ref: 'PetStatus', required: true },
     description: { type: String, required: true },
     created: { type: Date, default: Date.now },
     updated: { type: Date, default: null },
