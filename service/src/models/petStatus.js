@@ -5,7 +5,7 @@ const { Schema } = mongoose;
  * PetStatusSchema
  */
 const PetStatusSchema = new Schema({
-    name: { type: String, required: true },
+    name: { type: String, required: true, unique: true },
     created: { type: Date, default: Date.now },
     updated: { type: Date, default: null },
 });
