@@ -10,8 +10,8 @@ const PetType = require('../models/petType');
  * @param {*} next function moves to next middleware
  */
 const create = async (req, res, next) => {
+    const { name } = req.body;
     try {
-        const { name } = req.body;
         const type = await new PetType({ name }).saveAsync();
         const returnObj = {
             success: true,
@@ -20,7 +20,7 @@ const create = async (req, res, next) => {
         };
         res.send(returnObj);
     } catch (error) {
-        const err = new APIError(`Error during creating new user: ${error}`, httpStatus.INTERNAL_SERVER_ERROR);
+        const err = new APIError(`Error during creating new pet type : ${error}`, httpStatus.INTERNAL_SERVER_ERROR);
         next(err);
     }
 };
@@ -28,13 +28,13 @@ const create = async (req, res, next) => {
 /**
  * Controller for pet type updating.
  * 
- * @param {*} req  in request body id and updateData is required;
+ * @param {*} req  in request body id and name is required;
  * @param {*} res  sends request status, updated type and message
  * @param {*} next function moves to next middleware
  */
 const update = async (req, res, next) => {
+    const { id, name } = req.body;
     try {
-        const { id, name } = req.body;
         const type = await PetType.findByIdAndUpdateAsync(id, { $set: { name } });
         const returnObj = {
             success: true,
@@ -43,7 +43,7 @@ const update = async (req, res, next) => {
         };
         res.send(returnObj);
     } catch (error) {
-        const err = new APIError(`Error during creating new user: ${error}`, httpStatus.INTERNAL_SERVER_ERROR);
+        const err = new APIError(`Error during updating pet type[${id}] : ${error}`, httpStatus.INTERNAL_SERVER_ERROR);
         next(err);
     }
 };
