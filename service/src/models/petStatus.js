@@ -13,7 +13,7 @@ const PetStatusSchema = new Schema({
 /**
  * PetStatusSchema hook
  * 
- * Each time verification updated, it sets new updated value
+ * Each time model updated, it sets new updated value
  */
 PetStatusSchema.pre('save', function (next) {
     if (!this.isNew) {

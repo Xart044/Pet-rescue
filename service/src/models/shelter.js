@@ -18,7 +18,7 @@ const ShelterSchema = new Schema({
 /**
  * UserVerificationScheme hook
  * 
- * Each time verification updated, it sets new updated value
+ * Each time model updated, it sets new updated value
  */
 ShelterSchema.pre('save', function (next) {
     if (!this.isNew) {

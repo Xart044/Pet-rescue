@@ -13,7 +13,7 @@ const PetTypeSchema = new Schema({
 /**
  * PetTypeSchema hook
  * 
- * Each time verification updated, it sets new updated value
+ * Each time model updated, it sets new updated value
  */
 PetTypeSchema.pre('save', function (next) {
     if (!this.isNew) {
