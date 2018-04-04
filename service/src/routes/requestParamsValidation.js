@@ -2,7 +2,7 @@ const Joi = require('joi');
 
 module.exports = {
     // POST /api/auth/register
-    createUser: {
+    userRegister: {
         body: {
             email: Joi.string().email().required(),
             password: Joi.string().alphanum().min(6).max(24).required(),
@@ -31,5 +31,43 @@ module.exports = {
             email: Joi.string().email().required(),
             password: Joi.string().alphanum().min(6).max(24).required()
         }
-    }
+    },
+    // POST /api/pet/type
+    petTypeCreate: {
+        body: {
+            name: Joi.string().required()
+        }
+    },
+    // PUT /api/pet/type
+    petTypeUpdate: {
+        body: {
+            id: Joi.string().required(),
+            name: Joi.string().required()
+        }
+    },
+    // DELETE /api/pet/type
+    petTypeDelete: {
+        body: {
+            id: Joi.string().required()
+        }
+    },
+    // POST /api/pet/status
+    petStatusCreate: {
+        body: {
+            name: Joi.string().required()
+        }
+    },
+    // POST /api/pet/status
+    petStatusUpdate: {
+        body: {
+            id: Joi.string().required(),
+            name: Joi.string().required()
+        }
+    },
+    // DELETE /api/pet/status
+    petStatusDelete: {
+        body: {
+            id: Joi.string().required()
+        }
+    },
 };

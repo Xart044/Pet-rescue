@@ -3,7 +3,11 @@ const mongoose = require('mongoose');
 
 const config = require('../../config/index');
 const devUsers = require('../constants/devUsers');
-const { register } = require('../controllers/user');
+const devPetTypes = require('../constants/devPetTypes');
+const devPetStatuses = require('../constants/devPetStatuses');
+const { register: createUser } = require('../controllers/user');
+const { create: createPetType } = require('../controllers/admin-petTypes');
+const { create: createPetStatus } = require('../controllers/admin-petStatuses');
 
 const { 
     database: { port: dbPort, domain: dbDomain, name }
@@ -19,8 +23,16 @@ const noop = () => {};
 const fillDatabaseWithData = async () => {
     await Promise.all(devUsers.map(async (user) => {
         console.log(`Creating user ${user.email} of role ${user.role} with password ${user.password}`);
-        await register({ body: { ...user } }, { send: noop }, noop);
+        await createUser({ body: { ...user } }, { send: noop }, noop);
     }));
+    await Promise.all(devPetTypes.map(async (type) => {
+        await createPetType({ body: { ...type } }, { send: noop }, noop);
+    }));
+    console.log(`Add pet types: ${JSON.stringify(devPetTypes.map(el => el.name))}`);
+    await Promise.all(devPetStatuses.map(async (status) => {
+        await createPetStatus({ body: { ...status } }, { send: noop }, noop);
+    }));
+    console.log(`Add pet statuses: ${JSON.stringify(devPetStatuses.map(el => el.name))}`);
 };
 
 const beforeAllTests = async () => {
