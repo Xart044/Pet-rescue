@@ -17,7 +17,7 @@ const createJwtValidation = (roles) => {
                 return next();
             } else {
                 if (error) {
-                    const err = new APIError('Token not matched', httpStatus.UNAUTHORIZED);
+                    const err = new APIError(`Token not matched: ${error}`, httpStatus.UNAUTHORIZED);
                     return next(err);
                 }
                 const err = new APIError(`Token not matched and error msg ${info}`, httpStatus.UNAUTHORIZED);
