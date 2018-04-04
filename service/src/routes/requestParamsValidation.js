@@ -31,5 +31,11 @@ module.exports = {
             email: Joi.string().email().required(),
             password: Joi.string().alphanum().min(6).max(24).required()
         }
+    },
+    // POST /api/pet/type
+    petTypeCreate: {
+        body: {
+            name: Joi.string().required()
+        }
     }
 };

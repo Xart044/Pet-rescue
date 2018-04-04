@@ -12,7 +12,7 @@ const PetType = require('../models/petType');
 const create = async (req, res, next) => {
     try {
         const { name } = req.body;
-        const type = await PetType.saveAsync({ name });
+        const type = await new PetType({ name }).saveAsync();
         const returnObj = {
             success: true,
             message: 'Type was succesfully created.',
