@@ -37,5 +37,11 @@ module.exports = {
         body: {
             name: Joi.string().required()
         }
+    },
+    // POST /api/pet/type
+    petStatusCreate: {
+        body: {
+            name: Joi.string().required()
+        }
     }
 };
