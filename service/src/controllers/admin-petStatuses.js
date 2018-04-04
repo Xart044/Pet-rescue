@@ -6,17 +6,17 @@ const PetStatus = require('../models/petStatus');
  * Controller for pet status creation.
  * 
  * @param {*} req  in request body name is required;
- * @param {*} res  sends request status, created type and message
+ * @param {*} res  sends request status, created status and message
  * @param {*} next function moves to next middleware
  */
 const create = async (req, res, next) => {
     try {
         const { name } = req.body;
-        const type = await new PetStatus({ name }).saveAsync();
+        const status = await new PetStatus({ name }).saveAsync();
         const returnObj = {
             success: true,
             message: 'Pet status was succesfully created.',
-            type
+            data: status
         };
         res.send(returnObj);
     } catch (error) {

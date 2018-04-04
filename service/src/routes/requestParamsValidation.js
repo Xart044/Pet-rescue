@@ -38,7 +38,14 @@ module.exports = {
             name: Joi.string().required()
         }
     },
-    // POST /api/pet/type
+    // PUT /api/pet/type
+    petTypeUpdate: {
+        body: {
+            id: Joi.string().required(),
+            name: Joi.string().required()
+        }
+    },
+    // POST /api/pet/status
     petStatusCreate: {
         body: {
             name: Joi.string().required()
