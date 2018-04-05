@@ -1,6 +1,5 @@
 const express = require('express');
 const validation = require('express-validation');
-const userController = require('../controllers/user');
 const authController = require('../controllers/auth');
 const paramsValidation = require('./requestParamsValidation');
 
@@ -12,7 +11,7 @@ router.route('/signin')
 
 // POST /api/auth/register
 router.route('/register')
-    .post(validation(paramsValidation.userRegister), userController.register);
+    .post(validation(paramsValidation.userRegister), authController.register);
 
 // POST /api/auth/activate
 router.route('/activate')
