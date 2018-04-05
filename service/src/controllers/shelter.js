@@ -33,7 +33,7 @@ const update = async (req, res, next) => {
  * @param {*} res  sends request status, updated shelter and message
  * @param {*} next function moves to next middleware
  */
-const addVolunteer = async (req, res, next) => {
+const addVolunteers = async (req, res, next) => {
     const { id } = req.query;
     const { volunteers } = req.body;
     try {
@@ -52,4 +52,4 @@ const addVolunteer = async (req, res, next) => {
     }
 };
 
-module.exports = { update, addVolunteer };
+module.exports = { update, addVolunteers };

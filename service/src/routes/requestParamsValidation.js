@@ -83,6 +83,15 @@ module.exports = {
             id: Joi.string().required()
         }
     },
+    // POST /api/shelter/:id/volunteers
+    shelterAddVolunteers: {
+        query: {
+            id: Joi.string().required()
+        },
+        body: {
+            volunteers: Joi.array().required()
+        }
+    },
     // POST /api/pet/type
     petTypeCreate: {
         body: {

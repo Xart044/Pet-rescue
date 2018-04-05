@@ -15,4 +15,9 @@ router.route('/:id')
     .put(validation(paramsValidation.updateShelter), shelterController.update)
     .delete(validation(paramsValidation.deleteShelter), adminShelterController.delete);
 
+
+// POST /api/shelter/:id/volunteers
+router.route('/:id/volunteers')
+    .post(validation(paramsValidation.shelterAddVolunteers), shelterController.addVolunteers)
+
 module.exports = router;
