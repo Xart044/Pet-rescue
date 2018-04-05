@@ -10,7 +10,8 @@ const User = require('../models/user');
  * @param {*} next function moves to next middleware
  */
 const update = async (req, res, next) => {
-    const { id, data } = req.body;
+    const { id } = req.query;
+    const { data } = req.body;
     try {
         const user = await User.findByIdAndUpdateAsync(id, { $set: { ...data } }, { new: true });
         const returnObj = {

@@ -33,7 +33,8 @@ const create = async (req, res, next) => {
  * @param {*} next function moves to next middleware
  */
 const update = async (req, res, next) => {
-    const { id, name } = req.body;
+    const { id } = req.query;
+    const { name } = req.body;
     try {
         const type = await PetType.findByIdAndUpdateAsync(id, { $set: { name } }, { new: true });
         const returnObj = {
@@ -56,7 +57,7 @@ const update = async (req, res, next) => {
  * @param {*} next function moves to next middleware
  */
 const deletePetType = async (req, res, next) => {
-    const { id } = req.body;
+    const { id } = req.query;
     try {
         await PetType.findByIdAndRemoveAsync(id);
         const returnObj = {

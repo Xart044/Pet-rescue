@@ -7,7 +7,10 @@ const router = express.Router();
 
 // POST /api/pet/status
 router.route('/')
-    .post(validation(paramsValidation.petStatusCreate), petStatusesController.create)
+    .post(validation(paramsValidation.petStatusCreate), petStatusesController.create);
+
+// PUT/DELETE /api/pet/status/:id
+router.route('/:id')
     .put(validation(paramsValidation.petStatusUpdate), petStatusesController.update)
     .delete(validation(paramsValidation.petStatusDelete), petStatusesController.delete);
     
