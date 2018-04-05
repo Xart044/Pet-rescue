@@ -28,12 +28,13 @@ const create = async (req, res, next) => {
 /**
  * Controller for pet type updating.
  * 
- * @param {*} req  in request body id and name is required;
+ * @param {*} req  in request query id and request body name is required;
  * @param {*} res  sends request status, updated type and message
  * @param {*} next function moves to next middleware
  */
 const update = async (req, res, next) => {
-    const { id, name } = req.body;
+    const { id } = req.query;
+    const { name } = req.body;
     try {
         const type = await PetType.findByIdAndUpdateAsync(id, { $set: { name } }, { new: true });
         const returnObj = {
@@ -51,12 +52,12 @@ const update = async (req, res, next) => {
 /**
  * Controller for pet type deleting.
  * 
- * @param {*} req  in request body id is required;
+ * @param {*} req  in request query id is required;
  * @param {*} res  sends request status, deleted type id and message
  * @param {*} next function moves to next middleware
  */
 const deletePetType = async (req, res, next) => {
-    const { id } = req.body;
+    const { id } = req.query;
     try {
         await PetType.findByIdAndRemoveAsync(id);
         const returnObj = {

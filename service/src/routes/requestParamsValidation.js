@@ -32,22 +32,39 @@ module.exports = {
             password: Joi.string().alphanum().min(6).max(24).required()
         }
     },
+    // PUT /api/user/:id
+    updateUser: {
+        query: {
+            id: Joi.string().required()
+        },
+        body: {
+            object: Joi.object().required()
+        }
+    },
+    // DELETE /api/user/:id
+    deleteUser: {
+        query: {
+            id: Joi.string().required()
+        }
+    },
     // POST /api/pet/type
     petTypeCreate: {
         body: {
             name: Joi.string().required()
         }
     },
-    // PUT /api/pet/type
+    // PUT /api/pet/type/:id
     petTypeUpdate: {
+        query: {
+            id: Joi.string().required()
+        },
         body: {
-            id: Joi.string().required(),
             name: Joi.string().required()
         }
     },
-    // DELETE /api/pet/type
+    // DELETE /api/pet/type/:id
     petTypeDelete: {
-        body: {
+        query: {
             id: Joi.string().required()
         }
     },
@@ -57,17 +74,19 @@ module.exports = {
             name: Joi.string().required()
         }
     },
-    // POST /api/pet/status
+    // PUT /api/pet/status/:id
     petStatusUpdate: {
+        query: {
+            id: Joi.string().required()
+        },
         body: {
-            id: Joi.string().required(),
             name: Joi.string().required()
         }
     },
-    // DELETE /api/pet/status
+    // DELETE /api/pet/status/:id
     petStatusDelete: {
-        body: {
+        query: {
             id: Joi.string().required()
         }
-    },
+    }
 };

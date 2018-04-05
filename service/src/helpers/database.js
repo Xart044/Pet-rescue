@@ -5,7 +5,7 @@ const config = require('../../config/index');
 const devUsers = require('../constants/devUsers');
 const devPetTypes = require('../constants/devPetTypes');
 const devPetStatuses = require('../constants/devPetStatuses');
-const { register: createUser } = require('../controllers/user');
+const { register: createUser } = require('../controllers/auth');
 const { create: createPetType } = require('../controllers/admin-petTypes');
 const { create: createPetStatus } = require('../controllers/admin-petStatuses');
 

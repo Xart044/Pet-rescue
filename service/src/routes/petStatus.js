@@ -9,12 +9,9 @@ const router = express.Router();
 router.route('/')
     .post(validation(paramsValidation.petStatusCreate), petStatusesController.create);
 
-// PUT /api/pet/status
-router.route('/')
-    .put(validation(paramsValidation.petStatusUpdate), petStatusesController.update);
-
-// DELETE /api/pet/status
-router.route('/')
+// PUT/DELETE /api/pet/status/:id
+router.route('/:id')
+    .put(validation(paramsValidation.petStatusUpdate), petStatusesController.update)
     .delete(validation(paramsValidation.petStatusDelete), petStatusesController.delete);
     
 module.exports = router;

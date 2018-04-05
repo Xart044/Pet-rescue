@@ -1,45 +1,52 @@
 const httpStatus = require('http-status');
 const APIError = require('../helpers/APIError');
 const User = require('../models/user');
-const UserVerification = require('../models/userVerification');
-const { generateVerificationNumber, sendVerificationSMS } = require('../helpers/verification');
 
 /**
- * Controller for user register.
- * Creates user and sends verificationNumber on users phone.
+ * Controller for user updating.
  * 
- * @param {*} req  in request body email and password is required;
- * @param {*} res  sends request status and message
+ * @param {*} req  in request query id and request body update data is required;
+ * @param {*} res  sends request status, updated user and message
  * @param {*} next function moves to next middleware
  */
-const register = async (req, res, next) => {
+const update = async (req, res, next) => {
+    const { id } = req.query;
+    const { data } = req.body;
     try {
-        const { email, phoneNo, firstName, lastName, password, role } = req.body;
-        const foundUser = await User.findOneAsync({ email: req.body.email });
-        if (foundUser) {
-            const err = new APIError(`There is already user with this email: ${email}`);
-            next(err);
-        } else {
-            let verification;
-            const newUser = await new User({ email, phoneNo, firstName, lastName, password, role }).saveAsync();
-            if (process.env.ENV === 'production') {
-                const verificationNumber = generateVerificationNumber();
-                verification = await new UserVerification({ userId: newUser._id, verificationNumber }).saveAsync();
-                sendVerificationSMS(phoneNo, verificationNumber);
-            } else {
-                verification = await new UserVerification({ userId: newUser._id, verified: true }).saveAsync();
-            }
-            await newUser.updateAsync({verification: verification._id});
-            const returnObj = {
-                success: true,
-                message: 'User was successfully created. Now activate your account.'
-            };
-            res.send(returnObj);
-        }
+        const user = await User.findByIdAndUpdateAsync(id, { $set: { ...data } }, { new: true });
+        const returnObj = {
+            success: true,
+            message: 'User was succesfully updated.',
+            data: user
+        };
+        res.send(returnObj);
     } catch (error) {
-        const err = new APIError(`Error during creating new user: ${error}`, httpStatus.INTERNAL_SERVER_ERROR);
+        const err = APIError(`Error during updating user[${id}] : ${error}`, httpStatus.INTERNAL_SERVER_ERROR);
         next(err);
     }
 };
 
-module.exports = { register };
+/**
+ * Controller for user deleting.
+ * 
+ * @param {*} req  in request query id is required;
+ * @param {*} res  sends request status, deleted type id and message
+ * @param {*} next function moves to next middleware
+ */
+const deleteUser = async (req, res, next) => {
+    const { id } = req.query;
+    try {
+        await User.findByIdAndRemoveAsync(id);
+        const returnObj = {
+            success: true,
+            message: 'User was succesfully deleted.',
+            data: { id }
+        };
+        res.send(returnObj);
+    } catch (error) {
+        const err = new APIError(`Error during deleting user[${id}] : ${error}`, httpStatus.INTERNAL_SERVER_ERROR);
+        next(err);
+    }
+};
+
+module.exports = { update, delete: deleteUser };
