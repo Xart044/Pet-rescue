@@ -9,6 +9,7 @@ const ShelterSchema = new Schema({
     name: { type: String, required: true },
     description: { type: String, required: true },
     location: { type: [Number], index: '2d', required: true },
+    archive: { type: Boolean, default: false },
     email: { type: String, required: true },
     phone: { type: String, required: true },
     created: { type: Date, default: Date.now },
