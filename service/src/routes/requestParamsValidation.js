@@ -32,6 +32,15 @@ module.exports = {
             password: Joi.string().alphanum().min(6).max(24).required()
         }
     },
+    // PUT /api/user/:id
+    updateUser: {
+        query: {
+            id: Joi.string().required()
+        },
+        body: {
+            object: Joi.object().required()
+        }
+    },
     // POST /api/pet/type
     petTypeCreate: {
         body: {
