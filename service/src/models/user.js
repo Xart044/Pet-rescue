@@ -17,6 +17,7 @@ const UserSchema = new Schema({
     password: { type: String, required: true },
     verification: { type: Schema.Types.ObjectId, ref: 'UserVerification' },
     role: { type: String, default: roles.volunteer },
+    archive: { type: Boolean, default: false },
     loginStatus: { type: Boolean, default: false },
     lastLogin: { type: Date, default: null },
     created: { type: Date, default: Date.now },

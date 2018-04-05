@@ -30,17 +30,17 @@ const update = async (req, res, next) => {
  * Controller for user deleting.
  * 
  * @param {*} req  in request query id is required;
- * @param {*} res  sends request status, deleted type id and message
+ * @param {*} res  sends request status, deleted user and message
  * @param {*} next function moves to next middleware
  */
 const deleteUser = async (req, res, next) => {
     const { id } = req.query;
     try {
-        await User.findByIdAndRemoveAsync(id);
+        const user = await User.findByIdAndUpdateAsync(id, { $set: { archive: true } }, { new: true });
         const returnObj = {
             success: true,
             message: 'User was succesfully deleted.',
-            data: { id }
+            data: user
         };
         res.send(returnObj);
     } catch (error) {
