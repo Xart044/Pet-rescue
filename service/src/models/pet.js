@@ -8,6 +8,7 @@ const PetSchema = new Schema({
     typeId: { type: Schema.Types.ObjectId, ref: 'PetType', required: true },
     statusId: { type: Schema.Types.ObjectId, ref: 'PetStatus', required: true },
     description: { type: String, required: true },
+    postHistory: { type: [{ type: Schema.Types.ObjectId, ref: 'Post', required: false }], required: false },
     created: { type: Date, default: Date.now },
     updated: { type: Date, default: null },
 });
