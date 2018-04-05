@@ -5,8 +5,9 @@ const paramsValidation = require('./requestParamsValidation');
 
 const router = express.Router();
 
-// PUT /api/user/:id
+// PUT/DELETE /api/user/:id
 router.route('/:id')
-    .put(validation(paramsValidation.updateUser), userController.update);
+    .put(validation(paramsValidation.updateUser), userController.update)
+    .delete(validation(paramsValidation.deleteUser), userController.delete);
 
 module.exports = router;

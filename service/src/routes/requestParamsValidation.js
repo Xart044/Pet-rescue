@@ -41,6 +41,12 @@ module.exports = {
             object: Joi.object().required()
         }
     },
+    // DELETE /api/user/:id
+    deleteUser: {
+        query: {
+            id: Joi.string().required()
+        }
+    },
     // POST /api/pet/type
     petTypeCreate: {
         body: {
