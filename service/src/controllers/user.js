@@ -11,7 +11,7 @@ const User = require('../models/user');
  */
 const update = async (req, res, next) => {
     const { id } = req.query;
-    const { data } = req.body;
+    const data = req.body;
     try {
         const user = await User.findByIdAndUpdateAsync(id, { $set: { ...data } }, { new: true });
         const returnObj = {

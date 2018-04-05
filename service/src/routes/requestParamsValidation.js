@@ -36,9 +36,6 @@ module.exports = {
     updateUser: {
         query: {
             id: Joi.string().required()
-        },
-        body: {
-            object: Joi.object().required()
         }
     },
     // DELETE /api/user/:id
