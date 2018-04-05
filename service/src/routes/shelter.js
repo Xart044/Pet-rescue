@@ -18,6 +18,6 @@ router.route('/:id')
 
 // POST /api/shelter/:id/volunteers
 router.route('/:id/volunteers')
-    .post(validation(paramsValidation.shelterAddVolunteers), shelterController.addVolunteers)
+    .post(validation(paramsValidation.shelterAddVolunteers), shelterController.addVolunteers);
 
 module.exports = router;
