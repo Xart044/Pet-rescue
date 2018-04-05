@@ -5,7 +5,7 @@ const User = require('../models/user');
 /**
  * Controller for user updating.
  * 
- * @param {*} req  in request body id and update data is required;
+ * @param {*} req  in request query id and request body update data is required;
  * @param {*} res  sends request status, updated user and message
  * @param {*} next function moves to next middleware
  */
@@ -26,4 +26,27 @@ const update = async (req, res, next) => {
     }
 };
 
-module.exports = { update };
+/**
+ * Controller for user deleting.
+ * 
+ * @param {*} req  in request query id is required;
+ * @param {*} res  sends request status, deleted type id and message
+ * @param {*} next function moves to next middleware
+ */
+const deleteUser = async (req, res, next) => {
+    const { id } = req.query;
+    try {
+        await User.findByIdAndRemoveAsync(id);
+        const returnObj = {
+            success: true,
+            message: 'User was succesfully deleted.',
+            data: { id }
+        };
+        res.send(returnObj);
+    } catch (error) {
+        const err = new APIError(`Error during deleting user[${id}] : ${error}`, httpStatus.INTERNAL_SERVER_ERROR);
+        next(err);
+    }
+};
+
+module.exports = { update, delete: deleteUser };
