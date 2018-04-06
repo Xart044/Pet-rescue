@@ -21,7 +21,7 @@ const update = async (req, res, next) => {
         };
         res.send(returnObj);
     } catch (error) {
-        const err = APIError(`Error during updating user[${id}] : ${error}`, httpStatus.INTERNAL_SERVER_ERROR);
+        const err = new APIError(`Error during updating user[${id}] : ${error}`, httpStatus.INTERNAL_SERVER_ERROR);
         next(err);
     }
 };
