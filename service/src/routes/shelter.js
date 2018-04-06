@@ -6,14 +6,14 @@ const paramsValidation = require('./requestParamsValidation');
 
 const router = express.Router();
 
-// POST/api/shelter
+// POST /api/shelter
 router.route('/')
-    .post(validation(paramsValidation.createShelter), adminShelterController.create);
+    .post(validation(paramsValidation.shelterCreate), adminShelterController.create);
 
 // PUT/DELETE /api/shelter/:id
 router.route('/:id')
-    .put(validation(paramsValidation.updateShelter), shelterController.update)
-    .delete(validation(paramsValidation.deleteShelter), adminShelterController.delete);
+    .put(validation(paramsValidation.shelterUpdate), shelterController.update)
+    .delete(adminShelterController.delete);
 
 
 // POST /api/shelter/:id/volunteers
