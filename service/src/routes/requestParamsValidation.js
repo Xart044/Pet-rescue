@@ -34,9 +34,6 @@ module.exports = {
     },
     // PUT /api/user/:id
     updateUser: {
-        query: {
-            id: Joi.string().required()
-        },
         body: {
             email: Joi.string().email(),
             phoneNo: Joi.string(),
@@ -44,12 +41,6 @@ module.exports = {
             lastName: Joi.string(),
             bio: Joi.string(),
             password: Joi.string().alphanum().min(6).max(24)
-        }
-    },
-    // DELETE /api/user/:id
-    deleteUser: {
-        query: {
-            id: Joi.string().required()
         }
     },
     // POST /api/shelter
@@ -65,9 +56,6 @@ module.exports = {
     },
     // PUT /api/shelter/:id
     shelterUpdate: {
-        query: {
-            id: Joi.string().required()
-        },
         body: {
             volunteers: Joi.array(),
             name: Joi.string(),
@@ -77,17 +65,8 @@ module.exports = {
             phone: Joi.string()
         }
     },
-    // DELETE /api/shelter/:id
-    shelterDelete: {
-        query: {
-            id: Joi.string().required()
-        }
-    },
     // POST /api/shelter/:id/volunteers
     shelterAddVolunteers: {
-        query: {
-            id: Joi.string().required()
-        },
         body: {
             volunteers: Joi.array().required()
         }
@@ -100,17 +79,8 @@ module.exports = {
     },
     // PUT /api/pet/type/:id
     petTypeUpdate: {
-        query: {
-            id: Joi.string().required()
-        },
         body: {
             name: Joi.string().required()
-        }
-    },
-    // DELETE /api/pet/type/:id
-    petTypeDelete: {
-        query: {
-            id: Joi.string().required()
         }
     },
     // POST /api/pet/status
@@ -121,17 +91,8 @@ module.exports = {
     },
     // PUT /api/pet/status/:id
     petStatusUpdate: {
-        query: {
-            id: Joi.string().required()
-        },
         body: {
             name: Joi.string().required()
-        }
-    },
-    // DELETE /api/pet/status/:id
-    petStatusDelete: {
-        query: {
-            id: Joi.string().required()
         }
     }
 };

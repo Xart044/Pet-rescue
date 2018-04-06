@@ -12,6 +12,6 @@ router.route('/')
 // PUT/DELETE /api/pet/type/:id
 router.route('/:id')
     .put(validation(paramsValidation.petTypeUpdate), petTypesController.update)
-    .delete(validation(paramsValidation.petTypeDelete), petTypesController.delete);
+    .delete(petTypesController.delete);
 
 module.exports = router;
