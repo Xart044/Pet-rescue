@@ -20,7 +20,7 @@ const create = async (req, res, next) => {
         };
         res.send(returnObj);        
     } catch (error) {
-        const err = APIError(`Error while creating new shelter: ${error}`, httpStatus.INTERNAL_SERVER_ERROR);
+        const err = new APIError(`Error while creating new shelter: ${error}`, httpStatus.INTERNAL_SERVER_ERROR);
         next(err);
     }
 };
@@ -43,7 +43,7 @@ const deleteShelter = async (req, res, next) => {
         };
         res.send(returnObj);        
     } catch (error) {
-        const err = APIError(`Error while deleting shelter[${id}] : ${error}`, httpStatus.INTERNAL_SERVER_ERROR);
+        const err = new APIError(`Error while deleting shelter[${id}] : ${error}`, httpStatus.INTERNAL_SERVER_ERROR);
         next(err);
     }
 };
