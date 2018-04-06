@@ -34,7 +34,7 @@ describe('Pet status controller test', () => {
     });
 
     it('#Test delete method; DELETE /api/pet/status/:id; ', async () => {
-        const petStatus = await PetStatus.findOneAsync({ name: devPetStatuses[2].name });
+        const petStatus = await PetStatus.findOneAsync({ name: devPetStatuses[1].name });
         const response = await request(app)
             .delete(`/api/pet/status/${petStatus._id}`);
 
