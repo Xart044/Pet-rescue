@@ -13,7 +13,7 @@ afterAll(async () => {
     await afterAllTests();
 });
 
-describe('User controller test', () => {
+describe('Pet status controller test', () => {
     it('#Test create method; POST /api/pet/status; ', async () => {
         const petStatusData = { name: 'new' };
         const response = await request(app)
